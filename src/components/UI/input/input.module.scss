@@ -1,0 +1,20 @@
+@import 'src/style/variables';
+
+.input {
+  width: $base * 65;
+  height: $base * 10.5;
+  padding: $base * 3.5 $base * 4;
+  font-size: $fz-xs;
+  font-weight: $fw-bold;
+  color: $color-secondary-700;
+  background-color: $color-secondary-100;
+  border: 1px solid $color-primary-100;
+  border-radius: $base * 2.5;
+  caret-color: $color-primary-600;
+  box-shadow: inset 0 0 0 $base * 12.5 $color-secondary-100;
+
+  &:focus {
+    padding: $base * 3 $base * 3.75;
+    border: $base * 0.5 solid $color-primary-600;
+  }
+}

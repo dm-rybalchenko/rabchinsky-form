@@ -1,0 +1,111 @@
+// === MIXINS ===
+@mixin animate($animation, $duration, $method, $times) {
+  animation: $animation $duration $method $times;
+}
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin appear {
+  animation: show-from-top $transition-long;
+  
+  @keyframes show-from-top {
+    0% {
+      top: -100%;
+    }
+
+    100% {
+      top: 0;
+    }
+  }
+}
+
+// === / MIXINS ===
+
+// ===  FUNCTIONS ===
+@function strip-unit($num) {
+  $one-unit: $num * 0 + 1;
+
+  @return calc($num / $one-unit);
+}
+
+@function rem($num) {
+  @return (calc(strip-unit($num) / 16)) * 1rem;
+}
+
+// === / FUNCTIONS ===
+
+// === VARIABLES ===
+$breakpoint-sm-min: 400px;
+$breakpoint-xs-max: $breakpoint-sm-min - 1px;
+$breakpoint-md-min: 550px;
+$breakpoint-sm-max: $breakpoint-md-min - 1px;
+$breakpoint-lg-min: 885px;
+$breakpoint-md-max: $breakpoint-lg-min - 1px;
+$breakpoint-lg-min: 1200px;
+$breakpoint-xlg-max: $breakpoint-lg-min - 1px;
+
+// common base
+$base: rem(4px);
+
+// font waights
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semi-bold: 600;
+$fw-bold: 700;
+
+// font sizes
+$fz-xxxs: rem(10px);
+$fz-xxs: rem(12px);
+$fz-xs: rem(14px);
+$fz-s: rem(16px);
+$fz-m: rem(18px);
+$fz-l: rem(20px);
+$fz-xl: rem(22px);
+$fz-xxl: rem(30px);
+$fz-xxxl: rem(34px);
+$fz-small-footer: rem(7px);
+$fz-big-title: rem(40px);
+
+// common transition
+$transition-short: 0.2s;
+$transition-long: 1s;
+
+// Primary color
+$color-primary-100: #e9ecf0;
+$color-primary-200: #dfecfd;
+$color-primary-300: #d9eaff;
+$color-primary-400: #c4d8ff;
+$color-primary-500: #98bfef;
+$color-primary-600: #2266eb;
+$color-primary-700: #1458db;
+$color-primary-800: #0c49c0;
+
+// Secondary color
+
+$color-secondary-100: #fff;
+$color-secondary-200: #f2f6fa;
+$color-secondary-300: #e3d9ac;
+$color-secondary-400: #9eafc4;
+$color-secondary-500: #7a8899;
+$color-secondary-600: #5e5e5e;
+$color-secondary-700: #1c273d;
+
+// Skeleton
+$color-skeleton-center: #e6ecf2;
+$color-skeleton-end: #bac5d2;
+$color-skeleton-line: #d6e5f3;
+
+// Colors
+$color-danger-50: #fff5f5;
+$color-danger-100: #fff3f3;
+$color-danger-200: #ff3232;
+$color-danger-300: #e71414;
+$color-success-100: #ECFFF1;
+$color-success-200: #2ab651;
+$color-shadow-note: rgba(104, 119, 149, 0.1);
+
+// === / VARIABLES ===

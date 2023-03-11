@@ -1,0 +1,39 @@
+@import 'src/style/variables';
+
+.container {
+  padding: $base * 30 $base * 10 $base * 2;
+
+  @media (max-width: $breakpoint-sm-max) {
+    padding: $base * 20 $base * 5 $base * 2;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    padding: $base * 15 $base $base * 2;
+  }
+}
+
+.btn {
+  max-width: $base * 100;
+  margin: 0 auto;
+}
+
+.title {
+  margin-top: $base * 10;
+  font-size: $fz-xxxl;
+  font-weight: $fw-bold;
+  text-align: center;
+
+  @media (max-width: $breakpoint-sm-max) {
+    margin-top: $base * 8;
+    font-size: $fz-xxl;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    font-size: $fz-xl;
+  }
+}
+
+.json{
+	margin-top: $base * 5;
+	white-space: pre-wrap;
+}

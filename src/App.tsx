@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useTypedSelector } from './hooks/useTypedSelector';
+import Form from './components/Form/Form';
+import Feedback from './components/Feedback/Feedback';
+import Popup from './components/Popup/Popup';
+import Success from './components/UI/notifications/Success';
+import Error from './components/UI/notifications/Error';
 
-function App() {
+
+function App(): JSX.Element {
+  const { error, success } = useTypedSelector((state) => state.notification);
+  const { popup } = useTypedSelector((state) => state.popup);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      {error && <Error />}
+      {success && <Success />}
+      <Feedback />
+      {popup && (
+        <Popup>
+          <Form />
+        </Popup>
+      )}
     </div>
   );
 }

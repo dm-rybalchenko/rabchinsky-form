@@ -1,3 +1,36 @@
+# Форма обратной связи
+
+[Ссылка на приложение]()
+
+### Стек
+
+React, TypeScript, Redux-Toolkit, SCSS-modules
+
+
+### Функционал
+
+* Отправка формы обратной связи
+
+* Вывод ответа сервера в JSON-формате
+
+* Отображение ошибок и успеха загрузки
+
+* Валидация полей и маска номера телефона
+
+* Лоадер при загрузке заметок
+
+
+## Скриншоты
+
+Главная страница с сообщением об успешной загрузке
+![Screenshot-app-notes](/docs/Screenshot-main.jpg)
+
+Поп-ап с формой 
+![Screenshot-app-notes-edit](/docs/Screenshot-popup.jpg)
+
+
+*Реализованы версии для ПК и мобильных устройств.*
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

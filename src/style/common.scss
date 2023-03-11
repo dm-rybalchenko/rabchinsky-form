@@ -1,0 +1,22 @@
+@import 'src/style/variables';
+
+// === COMMON ===
+body.block {
+  overflow: hidden;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  font-size: $fz-l;
+  font-weight: $fw-bold;
+  color: $color-secondary-700;
+  background-color: $color-secondary-200;
+}
+
+// === / COMMON ===

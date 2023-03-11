@@ -1,0 +1,78 @@
+@import 'src/style/variables';
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($color-secondary-400, 0.9);
+  backdrop-filter: blur($base * 2.5);
+}
+
+.container {
+  max-width: 90vw;
+  max-height: 100vh;
+  overflow: auto;
+  border-radius: $base * 5;
+}
+
+.close {
+  position: absolute;
+  top: 10%;
+  right: $base * 15;
+  display: block;
+  width: $base * 14;
+  height: $base * 14;
+  cursor: pointer;
+  background: transparent;
+
+  &::after,
+  &::before {
+    position: absolute;
+    top: 50%;
+    width: $base * 14;
+    height: $base * 1.25;
+    content: '';
+    background-color: $color-secondary-700;
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  &:hover {
+    &::after,
+    &::before {
+      background-color: $color-primary-600;
+    }
+  }
+
+  @media (max-width: $breakpoint-lg-min) {
+    right: $base * 10;
+  }
+
+  @media (max-width: $breakpoint-md-max) {
+    top: 5%;
+    right: $base * 5;
+  }
+
+  @media (max-width: $breakpoint-sm-max) {
+    top: $base * 4;
+    width: $base * 10;
+    height: $base * 10;
+
+    &::before,
+    &::after {
+      width: $base * 10;
+      height: $base * 1;
+    }
+  }
+}

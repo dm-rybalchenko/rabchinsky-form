@@ -1,0 +1,24 @@
+@import 'src/style/variables';
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: $base * 10.5;
+  padding: 0 $base * 7.5;
+  font-size: $fz-xs;
+  font-weight: $fw-bold;
+  line-height: 1.1;
+  color: $color-secondary-100;
+  background-color: $color-primary-600;
+  border-radius: $base * 3;
+
+  &:hover {
+    background-color: $color-primary-700;
+  }
+
+  &:active {
+    background-color: $color-primary-800;
+  }
+}

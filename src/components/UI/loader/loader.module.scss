@@ -1,0 +1,125 @@
+@import 'src/style/variables';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outer {
+  position: relative;
+  display: inline-block;
+  width: $base * 11.5;
+  height: $base * 11.5;
+  margin: 1em;
+  overflow: hidden;
+  border-radius: 50%;
+
+  &::after {
+    position: absolute;
+    top: $base * 2.25;
+    left: $base * 2.25;
+    display: block;
+    width: $base * 7;
+    height: $base * 7;
+    content: '';
+    background: $color-secondary-400;
+    border-radius: 50%;
+  }
+
+  & > span {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+
+.left {
+  left: 0;
+}
+
+.right {
+  left: 49%;
+}
+
+.anim {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background: $color-primary-600;
+  border-radius: $base * 250;
+  opacity: 0.8;
+  transform-origin: 0 50% 0;
+  animation: rotate-left 1.5s infinite;
+}
+
+.left .anim {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.right .anim {
+  left: -100%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  transform-origin: 100% 50% 0;
+}
+
+.outer .anim {
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+}
+
+.outer .right .anim {
+  animation-name: rotate-right;
+  animation-delay: 0.75s;
+}
+
+@keyframes rotate-right {
+  0% {
+    transform: rotate(-5deg);
+  }
+
+  25% {
+    transform: rotate(180deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-left {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
