@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import cn from 'classnames';
 
 import {
@@ -27,6 +27,11 @@ const errMessage = 'Cимволы #&<>{}`^[]|\\ запрещены';
 
 function Form(): JSX.Element {
   const dispatch = useDispatch();
+  const [fieldsErr, setFieldsErr] = useState<string[]>([
+    'number',
+    'name',
+    'message',
+  ]);
   const {
     register,
     handleSubmit,
@@ -47,10 +52,14 @@ function Form(): JSX.Element {
     }
   );
 
-  const nandleSendForm: SubmitHandler<IForm> = (data) => {
+  const onSendForm: SubmitHandler<IForm> = (data) => {
     const number = data.number.replace(/\s|-|\(|\)/g, '');
 
     sendForm(number, data.name, data.message);
+  };
+
+  const onError: SubmitErrorHandler<typeof errors> = (data) => {
+    setFieldsErr(Object.keys(data));
   };
 
   useEffect(() => {
@@ -66,51 +75,66 @@ function Form(): JSX.Element {
     <div className={stl.wrapper}>
       <h2 className={stl.title}>Форма обратной связи</h2>
       <form
-        onSubmit={handleSubmit(nandleSendForm)}
+        onSubmit={handleSubmit(onSendForm, onError)}
         className={stl.form}
         noValidate
       >
-        <Input
-          mask="+9 (999) 999-99-99"
-          register={register('number', {
-            required: 'Нужно ввести ваш номер телефона',
-            validate: (value) =>
-              !!value.match(regExpPhone) ||
-              'Введите номер по форме +7 (999) 999-99-99',
-          })}
-          onFocus={(): void => clearErrors('number')}
-          placeholder="Номер"
-          type="tel"
-          modClass={cn({ [stl.error]: errors.number })}
-        />
-        {errors.number && (
-          <div className={stl['errors-box']}>{errors.number.message}</div>
-        )}
-        <Input
-          register={register('name', {
-            required: 'Нужно ввести имя',
-            validate: (value) => !value.match(regExpText) || errMessage,
-          })}
-          onFocus={(): void => clearErrors('name')}
-          placeholder="Имя"
-          type="text"
-          modClass={cn({ [stl.error]: errors.name })}
-        />
-        {errors.name && (
-          <div className={stl['errors-box']}>{errors.name.message}</div>
-        )}
-        <Textarea
-          register={register('message', {
-            required: 'Нужно ввести сообщение',
-            validate: (value) => !value.match(regExpText) || errMessage,
-          })}
-          onFocus={(): void => clearErrors('message')}
-          placeholder="Сообщение"
-          modClass={cn({ [stl.error]: errors.message })}
-        />
-        {errors.message && (
-          <div className={stl['errors-box']}>{errors.message.message}</div>
-        )}
+        <div className={cn({ [stl.success]: !fieldsErr.includes('number') })}>
+          <Input
+            mask="+9 (999) 999-99-99"
+            register={register('number', {
+              required: 'Нужно ввести ваш номер телефона',
+              validate: (value) =>
+                !!value.match(regExpPhone) ||
+                'Введите номер по форме +7 (999) 999-99-99',
+            })}
+            onFocus={(): void => {
+              clearErrors('number');
+              setFieldsErr([...fieldsErr, 'number']);
+            }}
+            placeholder="Номер"
+            type="tel"
+            modClass={cn({ [stl.error]: errors.number })}
+          />
+          {errors.number && (
+            <div className={stl['errors-box']}>{errors.number.message}</div>
+          )}
+        </div>
+        <div className={cn({ [stl.success]: !fieldsErr.includes('name') })}>
+          <Input
+            register={register('name', {
+              required: 'Нужно ввести имя',
+              validate: (value) => !value.match(regExpText) || errMessage,
+            })}
+            onFocus={(): void => {
+              clearErrors('name');
+              setFieldsErr([...fieldsErr, 'name']);
+            }}
+            placeholder="Имя"
+            type="text"
+            modClass={cn({ [stl.error]: errors.name })}
+          />
+          {errors.name && (
+            <div className={stl['errors-box']}>{errors.name.message}</div>
+          )}
+        </div>
+        <div className={cn({ [stl.success]: !fieldsErr.includes('message') })}>
+          <Textarea
+            register={register('message', {
+              required: 'Нужно ввести сообщение',
+              validate: (value) => !value.match(regExpText) || errMessage,
+            })}
+            onFocus={(): void => {
+              clearErrors('message');
+              setFieldsErr([...fieldsErr, 'message']);
+            }}
+            placeholder="Сообщение"
+            modClass={cn({ [stl.error]: errors.message })}
+          />
+          {errors.message && (
+            <div className={stl['errors-box']}>{errors.message.message}</div>
+          )}
+        </div>
         <Button>Отправить</Button>
       </form>
     </div>

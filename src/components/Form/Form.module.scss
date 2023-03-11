@@ -5,7 +5,7 @@
   background: $color-secondary-100;
 
   @media (max-width: $breakpoint-sm-max) {
-	padding: $base * 5;
+    padding: $base * 5;
   }
 
   @media (max-width: $breakpoint-xs-max) {
@@ -57,11 +57,32 @@
 .errors-box {
   width: 100%;
   padding: $base * 2.5 $base * 5;
-  margin-top: -$base * 2;
+  margin-top: $base;
   font-size: $fz-xxxs;
   line-height: 1.5;
   color: $color-danger-200;
   text-align: center;
   background: $color-danger-100;
   border-radius: $base * 2.5;
+}
+
+.success,
+.success:focus {
+  position: relative;
+
+  input,
+  textarea {
+    border: $base * 0.5 solid $color-success-200;
+  }
+
+  &::after {
+    position: absolute;
+    top: $base * 2.5;
+    right: $base * 4;
+    display: inline-block;
+    width: $base * 3;
+    height: $base * 3;
+    color: $color-success-200;
+    content: '✓';
+  }
 }

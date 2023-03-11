@@ -1,6 +1,6 @@
 # Форма обратной связи
 
-[Ссылка на приложение]()
+[Ссылка на приложение](https://rabchinsky-form.vercel.app)
 
 ### Стек
 
@@ -27,6 +27,9 @@ React, TypeScript, Redux-Toolkit, SCSS-modules
 
 Поп-ап с формой 
 ![Screenshot-app-notes-edit](/docs/Screenshot-popup.jpg)
+
+Поп-ап с валидацией полей 
+![Screenshot-app-notes-edit](/docs/Screenshot-popup-validate.jpg)
 
 
 *Реализованы версии для ПК и мобильных устройств.*
